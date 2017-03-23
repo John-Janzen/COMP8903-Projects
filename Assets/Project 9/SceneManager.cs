@@ -62,6 +62,9 @@ public class SceneManager : MonoBehaviour {
                 FinalVelocityU = UFN + (UdotT * T);
                 FinalVelocityV = VFN + (VdotT * T);
 
+                FinalVelocityU.y = -FinalVelocityU.y;
+                FinalVelocityV.y = -FinalVelocityV.y;
+
                 finalPartsX.x = Mass1 * FinalVelocityU.x;
                 finalPartsX.y = Mass2 * FinalVelocityV.x;
                 finalPartsY.x = Mass1 * FinalVelocityU.y;
@@ -71,11 +74,11 @@ public class SceneManager : MonoBehaviour {
                 p_fx = finalPartsX.x + finalPartsX.y;
                 p_fy = finalPartsY.x + finalPartsY.y;
 
-                KE_i.x = Mass1 * Mathf.Pow(InitialVelocityU.x, 2.0f) / 2 + Mass2 * Mathf.Pow(InitialVelocityV.x, 2.0f) / 2;
-                KE_i.y = Mass1 * Mathf.Pow(InitialVelocityU.y, 2.0f) / 2 + Mass2 * Mathf.Pow(InitialVelocityV.y, 2.0f) / 2;
+                KE_i.x = Mass1 * Mathf.Pow(InitialVelocityU.x, 2.0f) / 2 + Mass1 * Mathf.Pow(InitialVelocityU.y, 2.0f) / 2;
+                KE_i.y = Mass2 * Mathf.Pow(InitialVelocityV.x, 2.0f) / 2 + Mass2 * Mathf.Pow(InitialVelocityV.y, 2.0f) / 2;
 
-                KE_f.x = Mass1 * Mathf.Pow(FinalVelocityU.x, 2.0f) / 2 + Mass2 * Mathf.Pow(FinalVelocityV.x, 2.0f) / 2;
-                KE_f.y = Mass1 * Mathf.Pow(FinalVelocityU.y, 2.0f) / 2 + Mass2 * Mathf.Pow(FinalVelocityV.y, 2.0f) / 2;
+                KE_f.x = Mass1 * Mathf.Pow(FinalVelocityU.x, 2.0f) / 2 + Mass1 * Mathf.Pow(FinalVelocityU.y, 2.0f) / 2;
+                KE_f.y = Mass2 * Mathf.Pow(FinalVelocityV.x, 2.0f) / 2 + Mass2 * Mathf.Pow(FinalVelocityV.y, 2.0f) / 2;
 
                 KE_Initial = KE_i.x + KE_i.y;
                 KE_Final = KE_f.x + KE_f.y;
@@ -87,12 +90,12 @@ public class SceneManager : MonoBehaviour {
                 Ball2.transform.position += new Vector3(InitialVelocityV.x * Time.deltaTime, 0, InitialVelocityV.y * Time.deltaTime);
             } else if (collisionCount == 1 && done)
             {
-                Ball1.transform.position += new Vector3(FinalVelocityU.x * Time.deltaTime, 0, -FinalVelocityU.y * Time.deltaTime);
-                Ball2.transform.position += new Vector3(FinalVelocityV.x * Time.deltaTime, 0, -FinalVelocityV.y * Time.deltaTime);
+                Ball1.transform.position += new Vector3(FinalVelocityU.x * Time.deltaTime, 0, FinalVelocityU.y * Time.deltaTime);
+                Ball2.transform.position += new Vector3(FinalVelocityV.x * Time.deltaTime, 0, FinalVelocityV.y * Time.deltaTime);
             }
         }
 
         initialParts.x = Mass1 * InitialVelocityU.x;
-        initialParts.y = Mass2 * InitialVelocityV.y;
+        initialParts.y = Mass2 * InitialVelocityV.x;
     }
 }
