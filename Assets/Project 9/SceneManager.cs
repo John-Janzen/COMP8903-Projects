@@ -20,8 +20,8 @@ public class SceneManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Ball1 = GameObject.Find("Ball1");
-        Ball2 = GameObject.Find("Ball2");
+        Ball1 = GameObject.Find("Cube");
+        Ball2 = GameObject.Find("Cube2");
 	}
 	
 	// Update is called once per frame

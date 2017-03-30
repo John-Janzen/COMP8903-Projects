@@ -7,7 +7,7 @@ public class CollisionDetect : MonoBehaviour {
     Renderer rend;
 	// Use this for initialization
 	void Start () {
-        sm = GameObject.Find("Ball1").GetComponent<SceneManager>();
+        sm = GameObject.Find("Cube").GetComponent<SceneManager>();
 	}
 	
 	// Update is called once per frame
